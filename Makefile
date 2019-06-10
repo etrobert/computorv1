@@ -1,4 +1,4 @@
-NAME				=	exec
+NAME				=	computor
 
 COLOR				=	\033[32m
 COLOR_RESET	=	\033[0m
@@ -7,7 +7,7 @@ SRCDIR			=	.
 OBJDIR			=	objs
 INCDIR			=	includes
 
-SRCNAM			=	main.cpp computorv1.cpp split_string.cpp
+SRCNAM			=	main.cpp computorv1.cpp split_string.cpp polynomial.cpp
 INCNAM			=
 
 CC					=	g++
@@ -24,6 +24,8 @@ OBJ					=	$(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 
 all:
 	@$(MAKE) $(NAME)
+
+$(OBJDIR)/computorv1.o: polynomial.h
 
 $(NAME): $(OBJ)
 	@$(MAKE) printname
