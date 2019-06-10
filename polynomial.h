@@ -4,8 +4,12 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <stdexcept>
+#include <cmath>
 
 #include "split_string.h"
+#include "print_vector.h"
+#include "nullstream.h"
 
 void delete_spaces_after_signs(std::string& s);
 
@@ -52,6 +56,32 @@ class polynomial {
           deg = i;
       }
       return deg;
+    }
+
+    std::vector<T> solve(std::ostream& vstream = nullstream::instance()) const {
+      vstream << "BONJOUR";
+      switch (degree()) {
+        case 0:
+          return std::vector<T>();
+        case 1:
+          return std::vector<T>{-coefs[0] / coefs[1]};
+        case 2:
+          {
+            const T d = coefs[1] * coefs[1] - 4 * coefs[0] * coefs[2];
+            if (d > 0) {
+              const T sqrt_d = sqrt(d);
+              return std::vector<T>{
+                (-coefs[1] - sqrt_d) / (2 * coefs[2]),
+                (-coefs[1] + sqrt_d) / (2 * coefs[2])
+              };
+            } else if (d == 0)
+              return std::vector<T>{-coefs[1] / (2 * coefs[2])};
+            else
+              return std::vector<T>();
+          }
+        default:
+          throw std::logic_error("Cannot compute");
+      }
     }
   private:
     std::vector<T> coefs;

@@ -1,5 +1,6 @@
 #include "computorv1.h"
 
+#include "print_vector.h"
 #include "split_string.h"
 #include "polynomial.h"
 
@@ -23,8 +24,9 @@ static polynomial<nb_type> parse(const string& equation) {
 void computorv1(const string& equation) {
   // Parsing
   const auto& p = parse(equation);
-  cout << "Reduced form: " << p << "= 0" << endl;
-  cout << "Polynomial degree: " << p.degree() << endl;
   // Reduction
+  cout << "Reduced form: " << p << "= 0" << endl;
   // Deduction of degree
+  cout << "Polynomial degree: " << p.degree() << endl;
+  cout << p.solve();
 }
