@@ -1,5 +1,5 @@
 #pragma once
 
-#include <string>
+#include <string_view>
 
-void computorv1(const std::string& equation);
+void computorv1(std::string_view equation);

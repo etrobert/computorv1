@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include <string>
+#include <string_view>
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
@@ -11,22 +11,25 @@
 #include "print_vector.h"
 #include "nullstream.h"
 
-void delete_spaces_after_signs(std::string& s);
+std::string delete_spaces_after_signs(std::string_view s);
 
 template<typename T>
 class polynomial {
   public:
     polynomial(void);
-    polynomial(const std::string& s) {
-      std::string no_spaces(s);
-      delete_spaces_after_signs(no_spaces);
+    polynomial(std::string_view s) {
+      const std::string no_spaces(delete_spaces_after_signs(s));
 
       const auto words = split_string(no_spaces, ' ');
 
       for (unsigned int i(0); i < words.size() ; i += 3) {
-        std::stringstream ss(words[i]);
         T k;
+
+        // TODO double copy
+        std::string str(words[i]);
+        std::stringstream ss(str);
         ss >> k;
+
         coefs.push_back(k);
       }
     }

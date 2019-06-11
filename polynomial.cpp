@@ -1,6 +1,7 @@
 #include "polynomial.h"
 
 using std::string;
+using std::string_view;
 
 static void delete_spaces_after_char(string& s, char c) {
   size_t pos = s.find(c, 0);
@@ -10,7 +11,9 @@ static void delete_spaces_after_char(string& s, char c) {
   }
 }
 
-void delete_spaces_after_signs(string& s) {
-  delete_spaces_after_char(s, '+');
-  delete_spaces_after_char(s, '-');
+string delete_spaces_after_signs(string_view s) {
+  string r(s);
+  delete_spaces_after_char(r, '+');
+  delete_spaces_after_char(r, '-');
+  return r;
 }

@@ -4,15 +4,15 @@
 #include "split_string.h"
 #include "polynomial.h"
 
-using std::string;
-
 #include <iostream>
 using std::cout;
 using std::endl;
 
+using std::string_view;
+
 using nb_type = float;
 
-static polynomial<nb_type> parse(const string& equation) {
+static polynomial<nb_type> parse(string_view equation) {
   const auto split = split_string(equation, '=');
 
   polynomial<nb_type> pol1(split[0]);
@@ -21,7 +21,7 @@ static polynomial<nb_type> parse(const string& equation) {
   return pol1 - pol2;
 }
 
-void computorv1(const string& equation) {
+void computorv1(string_view equation) {
   // Parsing
   const auto& p = parse(equation);
   // Reduction

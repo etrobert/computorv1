@@ -11,7 +11,7 @@ SRCNAM			=	main.cpp computorv1.cpp split_string.cpp polynomial.cpp
 INCNAM			=
 
 CC					=	g++
-CFLAGS			=	-Wall -Wextra -Werror -I$(INCDIR)
+CFLAGS			=	-Wall -Wextra -Werror -I$(INCDIR) -std=c++17
 LDFLAGS			=	
 
 GIT					=	README.md
