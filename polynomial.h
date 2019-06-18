@@ -44,7 +44,11 @@ class polynomial {
 
     void print(std::ostream& out) const {
       for (unsigned int i(0); i < coefs.size(); ++i) {
-        out << std::showpos << coefs[i] << " * X^" << i;
+        if (coefs[i] < 0)
+          out << "- ";
+        else if (i != 0)
+          out << "+ ";
+        out << abs(coefs[i]) << " * X^" << i;
         if (i != coefs.size() + 1)
           out << " ";
       }
