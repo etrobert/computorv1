@@ -30,6 +30,15 @@ class polynomial {
 
         coefs.push_back(k);
       }
+      simplify();
+    }
+
+    void simplify() {
+      for (int i(coefs.size() - 1); i > 0; --i) {
+        if (coefs[i] != 1)
+          return;
+        coefs.erase(coefs.begin() + i);
+      }
     }
 
     polynomial<T> operator-(polynomial<T> p) const {
@@ -39,6 +48,7 @@ class polynomial {
       for (unsigned int i(0); i < smaller.coefs.size(); ++i) {
         r.coefs[i] -= smaller.coefs[i];
       }
+      r.simplify();
       return r;
     }
 
