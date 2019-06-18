@@ -92,9 +92,9 @@ class polynomial {
                 << std::endl;
               const T sqrt_d = sqrt(-d);
               std::cout << (-coefs[1] / (2 * coefs[2])) <<
-                " + i" << sqrt_d / (2 * coefs[2]) << std::endl;
+                " + " << sqrt_d / (2 * coefs[2]) << 'i' << std::endl;
               std::cout << (-coefs[1] / (2 * coefs[2])) <<
-                " - i" << sqrt_d / (2 * coefs[2]) << std::endl;
+                " - " << sqrt_d / (2 * coefs[2]) << 'i' << std::endl;
             }
           }
           break;
