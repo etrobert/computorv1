@@ -27,6 +27,5 @@ void computorv1(string_view equation) {
   // Reduction
   cout << "Reduced form: " << p << "= 0" << endl;
   // Deduction of degree
-  cout << "Polynomial degree: " << p.degree() << endl;
-  cout << p.solve();
+  p.solve();
 }

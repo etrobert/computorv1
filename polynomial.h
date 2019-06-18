@@ -7,7 +7,6 @@
 #include <stdexcept>
 
 #include "split_string.h"
-#include "print_vector.h"
 #include "math.h"
 
 std::string delete_spaces_after_signs(std::string_view s);
@@ -60,28 +59,49 @@ class polynomial {
       return deg;
     }
 
-    std::vector<T> solve() const {
-      switch (degree()) {
+    // Returns the solutions or nothing if any number is solution
+    void solve() const {
+      const auto deg = degree();
+      std::cout << "Polynomial degree: " << deg << std::endl;
+      switch (deg) {
         case 0:
-          return std::vector<T>();
+          if (coefs[0] == 0)
+            std::cout << "Any number is solution." << std::endl;
+          else
+            std::cout << "There are no solutions." << std::endl;
+          break;
         case 1:
-          return std::vector<T>{-coefs[0] / coefs[1]};
+          std::cout << "The solution is " << -coefs[0] / coefs[1] << std::endl;
+          break;
         case 2:
           {
             const T d = coefs[1] * coefs[1] - 4 * coefs[0] * coefs[2];
             if (d > 0) {
+              std::cout <<
+                "Discriminant is strictly positive, the two solutions are:"
+                << std::endl;
               const T sqrt_d = sqrt(d);
-              return std::vector<T>{
-                (-coefs[1] - sqrt_d) / (2 * coefs[2]),
-                (-coefs[1] + sqrt_d) / (2 * coefs[2])
-              };
+              std::cout << (-coefs[1] - sqrt_d) / (2 * coefs[2]) << std::endl;
+              std::cout << (-coefs[1] + sqrt_d) / (2 * coefs[2]) << std::endl;
             } else if (d == 0)
-              return std::vector<T>{-coefs[1] / (2 * coefs[2])};
-            else
-              return std::vector<T>();
+              std::cout << "Discriminant is null, the solution is " <<
+                -coefs[1] / (2 * coefs[2]) << std::endl;
+            else {
+              std::cout <<
+                "Discriminant is strictly negative, the two solutions are:"
+                << std::endl;
+              const T sqrt_d = sqrt(-d);
+              std::cout << (-coefs[1] / (2 * coefs[2])) <<
+                " + i" << sqrt_d / (2 * coefs[2]) << std::endl;
+              std::cout << (-coefs[1] / (2 * coefs[2])) <<
+                " - i" << sqrt_d / (2 * coefs[2]) << std::endl;
+            }
           }
+          break;
         default:
-          throw std::logic_error("Cannot compute");
+          std::cout <<
+            "The polynomial degree is stricly greater than 2, I can't solve."
+            << std::endl;
       }
     }
   private:
