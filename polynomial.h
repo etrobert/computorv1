@@ -9,7 +9,6 @@
 
 #include "split_string.h"
 #include "print_vector.h"
-#include "nullstream.h"
 
 std::string delete_spaces_after_signs(std::string_view s);
 
@@ -61,8 +60,7 @@ class polynomial {
       return deg;
     }
 
-    std::vector<T> solve(std::ostream& vstream = nullstream::instance()) const {
-      vstream << "BONJOUR";
+    std::vector<T> solve() const {
       switch (degree()) {
         case 0:
           return std::vector<T>();
