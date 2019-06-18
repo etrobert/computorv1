@@ -7,7 +7,7 @@ SRCDIR			=	.
 OBJDIR			=	objs
 INCDIR			=	includes
 
-SRCNAM			=	main.cpp computorv1.cpp split_string.cpp polynomial.cpp
+SRCNAM			=	main.cpp computorv1.cpp split_string.cpp polynomial.cpp math.cpp
 INCNAM			=
 
 CC					=	g++

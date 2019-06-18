@@ -5,10 +5,10 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
-#include <cmath>
 
 #include "split_string.h"
 #include "print_vector.h"
+#include "math.h"
 
 std::string delete_spaces_after_signs(std::string_view s);
 
