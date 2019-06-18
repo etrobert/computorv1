@@ -11,9 +11,6 @@ void usage(string prog_name) {
   cout << "usage: " << prog_name << " equation" << endl;
 }
 
-#include "split_string.h" // TODO delete
-#include "print_vector.h" // TODO delete
-
 int main(int argc, char** argv) {
   if (argc < 2) {
     usage(argv[0]);
