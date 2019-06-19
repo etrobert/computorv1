@@ -8,7 +8,7 @@
 #include <regex>
 
 #include "split_string.h"
-#include "math.h"
+#include "smath.h"
 
 template<typename T>
 class polynomial {
@@ -63,7 +63,7 @@ class polynomial {
           out << "- ";
         else if (i != 0)
           out << "+ ";
-        out << abs(coefs[i]) << " * X^" << i;
+        out << smath::abs(coefs[i]) << " * X^" << i;
         if (i != coefs.size() + 1)
           out << " ";
       }
@@ -99,7 +99,7 @@ class polynomial {
               std::cout <<
                 "Discriminant is strictly positive, the two solutions are:"
                 << std::endl;
-              const T sqrt_d = sqrt(d);
+              const T sqrt_d = smath::sqrt(d);
               std::cout << (-coefs[1] - sqrt_d) / (2 * coefs[2]) << std::endl;
               std::cout << (-coefs[1] + sqrt_d) / (2 * coefs[2]) << std::endl;
             } else if (d == 0)
@@ -109,7 +109,7 @@ class polynomial {
               std::cout <<
                 "Discriminant is strictly negative, the two solutions are:"
                 << std::endl;
-              const T sqrt_d = sqrt(-d);
+              const T sqrt_d = smath::sqrt(-d);
               std::cout << (-coefs[1] / (2 * coefs[2])) <<
                 " + " << sqrt_d / (2 * coefs[2]) << 'i' << std::endl;
               std::cout << (-coefs[1] / (2 * coefs[2])) <<
