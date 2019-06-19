@@ -28,6 +28,8 @@ namespace smath {
 
   template<typename T>
   T abs(T n) {
+    if (n == 0)
+      return 0;
     return (n > 0) ? n : -n;
   }
 }
