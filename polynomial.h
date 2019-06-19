@@ -5,32 +5,37 @@
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
+#include <regex>
 
 #include "split_string.h"
 #include "math.h"
-
-std::string delete_spaces_after_signs(std::string_view s);
 
 template<typename T>
 class polynomial {
   public:
     polynomial(void);
     polynomial(std::string_view s) {
-      const std::string no_spaces(delete_spaces_after_signs(s));
-
-      const auto words = split_string(no_spaces, ' ');
-
-      for (unsigned int i(0); i < words.size() ; i += 3) {
-        T k;
-
-        // TODO double copy
-        std::string str(words[i]);
-        std::stringstream ss(str);
-        ss >> k;
-
-        coefs.push_back(k);
-      }
+      parse(s);
       simplify();
+    }
+
+    T parse_number(const std::string& str) {
+      T k;
+      std::stringstream ss(str);
+      ss >> k;
+      return k;
+    }
+
+    void parse(std::string_view sv) {
+      const std::regex e("([+-]?) ?([0-9]+(\\.[0-9]+)?) ?\\* ?X\\^([0-9]+)");
+      for (std::regex_iterator<std::string_view::const_iterator> ri(sv.begin(), sv.end(), e);
+          ri != std::regex_iterator<std::string_view::const_iterator>();
+          ++ri) {
+        const std::match_results<std::string_view::const_iterator> sm(*ri);
+        //const unsigned int power = std::atoi(sm[4].str().c_str());
+        const T f = parse_number(sm[2].str());
+        coefs.push_back(sm[1] == "-" ? -f : f);
+      }
     }
 
     void simplify() {
