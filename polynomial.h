@@ -90,7 +90,8 @@ class polynomial {
             std::cout << "There are no solutions." << std::endl;
           break;
         case 1:
-          std::cout << "The solution is " << -coefs[0] / coefs[1] << std::endl;
+          std::cout << "The solution is:" << std::endl <<
+            -coefs[0] / coefs[1] << std::endl;
           break;
         case 2:
           {
