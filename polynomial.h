@@ -9,6 +9,7 @@
 
 #include "split_string.h"
 #include "smath.h"
+#include "Complex.h"
 
 template<typename T>
 class polynomial {
@@ -81,6 +82,34 @@ class polynomial {
       return deg;
     }
 
+    void solve_2() const {
+      const T d = coefs[1] * coefs[1] - 4 * coefs[0] * coefs[2];
+      if (d > 0) {
+        std::cout <<
+          "Discriminant is strictly positive, the two solutions are:"
+          << std::endl;
+        const T sqrt_d = smath::sqrt(d);
+        std::cout << (-coefs[1] - sqrt_d) / (2 * coefs[2]) << std::endl;
+        std::cout << (-coefs[1] + sqrt_d) / (2 * coefs[2]) << std::endl;
+      } else if (d == 0)
+        std::cout << "Discriminant is null, the solution is " <<
+          -coefs[1] / (2 * coefs[2]) << std::endl;
+      else {
+        std::cout <<
+          "Discriminant is strictly negative, the two solutions are:"
+          << std::endl;
+        const T sqrt_d = smath::sqrt(-d);
+        std::cout << Complex<T>{
+          -coefs[1] / (2 * coefs[2]),
+            sqrt_d / (2 * coefs[2])
+        } << std::endl;
+        std::cout << Complex<T>{
+          -coefs[1] / (2 * coefs[2]),
+            -sqrt_d / (2 * coefs[2])
+        } << std::endl;
+      }
+    }
+
     // Returns the solutions or nothing if any number is solution
     void solve() const {
       const auto deg = degree();
@@ -97,29 +126,7 @@ class polynomial {
             -coefs[0] / coefs[1] << std::endl;
           break;
         case 2:
-          {
-            const T d = coefs[1] * coefs[1] - 4 * coefs[0] * coefs[2];
-            if (d > 0) {
-              std::cout <<
-                "Discriminant is strictly positive, the two solutions are:"
-                << std::endl;
-              const T sqrt_d = smath::sqrt(d);
-              std::cout << (-coefs[1] - sqrt_d) / (2 * coefs[2]) << std::endl;
-              std::cout << (-coefs[1] + sqrt_d) / (2 * coefs[2]) << std::endl;
-            } else if (d == 0)
-              std::cout << "Discriminant is null, the solution is " <<
-                -coefs[1] / (2 * coefs[2]) << std::endl;
-            else {
-              std::cout <<
-                "Discriminant is strictly negative, the two solutions are:"
-                << std::endl;
-              const T sqrt_d = smath::sqrt(-d);
-              std::cout << (-coefs[1] / (2 * coefs[2])) <<
-                " + " << sqrt_d / (2 * coefs[2]) << 'i' << std::endl;
-              std::cout << (-coefs[1] / (2 * coefs[2])) <<
-                " - " << sqrt_d / (2 * coefs[2]) << 'i' << std::endl;
-            }
-          }
+          solve_2();
           break;
         default:
           std::cout <<
