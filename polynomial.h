@@ -22,7 +22,8 @@ class polynomial {
     T parse_number(const std::string& str) {
       T k;
       std::stringstream ss(str);
-      ss >> k;
+      if (!(ss >> k))
+        throw std::runtime_error("Could not parse value '" + str + "'");
       return k;
     }
 

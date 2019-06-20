@@ -22,10 +22,14 @@ static polynomial<nb_type> parse(string_view equation) {
 }
 
 void computorv1(string_view equation) {
-  // Parsing
-  const auto& p = parse(equation);
-  // Reduction
-  cout << "Reduced form: " << p << "= 0" << endl;
-  // Deduction of degree
-  p.solve();
+  try {
+    // Parsing
+    const auto& p = parse(equation);
+    // Reduction
+    cout << "Reduced form: " << p << "= 0" << endl;
+    // Deduction of degree
+    p.solve();
+  } catch (std::runtime_error& e) {
+    cout << "And error occured during parsing : " << e.what() << endl;
+  }
 }
