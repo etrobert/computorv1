@@ -32,9 +32,11 @@ class polynomial {
           ri != std::regex_iterator<std::string_view::const_iterator>();
           ++ri) {
         const std::match_results<std::string_view::const_iterator> sm(*ri);
-        //const unsigned int power = std::atoi(sm[4].str().c_str());
+        const unsigned int power = std::atoi(sm[4].str().c_str());
+        if (coefs.size() < power + 1)
+          coefs.resize(power + 1);
         const T f = parse_number(sm[2].str());
-        coefs.push_back(sm[1] == "-" ? -f : f);
+        coefs[power] += (sm[1] == "-" ? -f : f);
       }
     }
 
