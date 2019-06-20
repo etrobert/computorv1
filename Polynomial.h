@@ -44,7 +44,7 @@ class Polynomial {
 
     void simplify() {
       for (int i(coefs.size() - 1); i > 0; --i) {
-        if (coefs[i] != 1)
+        if (coefs[i] != 0)
           return;
         coefs.erase(coefs.begin() + i);
       }
