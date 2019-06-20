@@ -67,7 +67,16 @@ class Polynomial {
           out << "- ";
         else if (i != 0)
           out << "+ ";
-        out << smath::abs(coefs[i]) << " * X^" << i;
+
+        out << smath::abs(coefs[i]);
+
+        // special cases for i == 0 and i == 1
+        if (i == 1)
+          out << " * X";
+        else if (i != 0)
+          out << " * X^" << i;
+
+        // add a space for the next entry if it's not the last coef
         if (i != coefs.size() + 1)
           out << " ";
       }
