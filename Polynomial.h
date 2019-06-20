@@ -82,6 +82,30 @@ class Polynomial {
       return deg;
     }
 
+    void solve() const {
+      const auto deg = degree();
+      std::cout << "Polynomial degree: " << deg << std::endl;
+      switch (deg) {
+        case 0:
+          if (coefs[0] == 0)
+            std::cout << "Any number is solution." << std::endl;
+          else
+            std::cout << "There are no solutions." << std::endl;
+          break;
+        case 1:
+          std::cout << "The solution is:" << std::endl <<
+            -coefs[0] / coefs[1] << std::endl;
+          break;
+        case 2:
+          solve_2();
+          break;
+        default:
+          std::cout <<
+            "The polynomial degree is stricly greater than 2, I can't solve."
+            << std::endl;
+      }
+    }
+  private:
     void solve_2() const {
       const T d = coefs[1] * coefs[1] - 4 * coefs[0] * coefs[2];
       if (d > 0) {
@@ -110,31 +134,6 @@ class Polynomial {
       }
     }
 
-    // Returns the solutions or nothing if any number is solution
-    void solve() const {
-      const auto deg = degree();
-      std::cout << "Polynomial degree: " << deg << std::endl;
-      switch (deg) {
-        case 0:
-          if (coefs[0] == 0)
-            std::cout << "Any number is solution." << std::endl;
-          else
-            std::cout << "There are no solutions." << std::endl;
-          break;
-        case 1:
-          std::cout << "The solution is:" << std::endl <<
-            -coefs[0] / coefs[1] << std::endl;
-          break;
-        case 2:
-          solve_2();
-          break;
-        default:
-          std::cout <<
-            "The polynomial degree is stricly greater than 2, I can't solve."
-            << std::endl;
-      }
-    }
-  private:
     std::vector<T> coefs;
 };
 
