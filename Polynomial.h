@@ -12,10 +12,10 @@
 #include "Complex.h"
 
 template<typename T>
-class polynomial {
+class Polynomial {
   public:
-    polynomial(void);
-    polynomial(std::string_view s) {
+    Polynomial(void);
+    Polynomial(std::string_view s) {
       parse(s);
       simplify();
     }
@@ -50,10 +50,10 @@ class polynomial {
       }
     }
 
-    polynomial<T> operator-(polynomial<T> p) const {
-      const polynomial& bigger = this->coefs.size() > p.coefs.size() ? *this : p;
-      const polynomial& smaller = this->coefs.size() > p.coefs.size() ? p : *this;
-      polynomial r(bigger);
+    Polynomial<T> operator-(Polynomial<T> p) const {
+      const Polynomial& bigger = this->coefs.size() > p.coefs.size() ? *this : p;
+      const Polynomial& smaller = this->coefs.size() > p.coefs.size() ? p : *this;
+      Polynomial r(bigger);
       for (unsigned int i(0); i < smaller.coefs.size(); ++i) {
         r.coefs[i] -= smaller.coefs[i];
       }
@@ -139,7 +139,7 @@ class polynomial {
 };
 
 template<typename T>
-std::ostream& operator<<(std::ostream &out, const polynomial<T> &p)
+std::ostream& operator<<(std::ostream &out, const Polynomial<T> &p)
 {
   p.print(out);
   return out;

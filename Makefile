@@ -25,7 +25,7 @@ OBJ					=	$(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 all:
 	@$(MAKE) $(NAME)
 
-$(OBJDIR)/computorv1.o: polynomial.h
+$(OBJDIR)/computorv1.o: Polynomial.h
 
 $(NAME): $(OBJ)
 	@$(MAKE) printname
