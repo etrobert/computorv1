@@ -24,7 +24,7 @@ static Polynomial<nb_type> parse(string_view equation) {
 void computorv1(string_view equation) {
   try {
     // Parsing
-    const auto& p = parse(equation);
+    const auto p = parse(equation);
     // Reduction
     cout << "Reduced form: " << p << " = 0" << endl;
     // Deduction of degree
