@@ -71,7 +71,7 @@ class Polynomial {
         if (i == 0)
           out << smath::abs(coefs[i]);
         else {
-          if (coefs[i] != 1)
+          if (coefs[i] != 1 && coefs[i] != -1)
             out << smath::abs(coefs[i]) << " * ";
 
           if (i == 1)
