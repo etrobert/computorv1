@@ -61,21 +61,14 @@ class Polynomial {
       return r;
     }
 
-    void print(std::ostream& out) const {
-      bool first(true);
-      for (unsigned int i(0); i < coefs.size(); ++i) {
-        if (coefs[i] == 0)
-          continue;
-        if (coefs[i] < 0)
-          out << "- ";
-        else if (i != 0)
-          out << "+ ";
-
+    static void print_coef(std::ostream& out, T coef, unsigned int i) {
         if (i == 0)
-          out << smath::abs(coefs[i]);
+          out << coef;
         else {
-          if (coefs[i] != 1 && coefs[i] != -1)
-            out << smath::abs(coefs[i]) << " * ";
+          if (coef == -1)
+            out << '-';
+          else if (coef != 1)
+            out << coef << " * ";
 
           if (i == 1)
             out << "X";
@@ -83,10 +76,29 @@ class Polynomial {
             out << "X^" << i;
         }
 
+    }
+
+    void print(std::ostream& out) const {
+      bool first(true);
+      for (unsigned int i(0); i < coefs.size(); ++i) {
+        if (coefs[i] == 0)
+          continue;
+
+        if (first) {
+          print_coef(out, coefs[i], i);
+          first = false;
+        } else {
+          if (coefs[i] < 0)
+            out << "- ";
+          else if (i != 0)
+            out << "+ ";
+
+          print_coef(out, smath::abs(coefs[i]), i);
+        }
+
         // add a space for the next entry if it's not the last coef
         if (i != coefs.size() - 1)
           out << " ";
-        first = false;
       }
       if (first)
         out << "0";
