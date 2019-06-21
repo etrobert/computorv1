@@ -62,7 +62,10 @@ class Polynomial {
     }
 
     void print(std::ostream& out) const {
+      bool first(true);
       for (unsigned int i(0); i < coefs.size(); ++i) {
+        if (coefs[i] == 0)
+          continue;
         if (coefs[i] < 0)
           out << "- ";
         else if (i != 0)
@@ -83,7 +86,10 @@ class Polynomial {
         // add a space for the next entry if it's not the last coef
         if (i != coefs.size() - 1)
           out << " ";
+        first = false;
       }
+      if (first)
+        out << "0";
     }
 
     unsigned int degree() const {
