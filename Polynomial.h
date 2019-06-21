@@ -10,6 +10,7 @@
 #include "split_string.h"
 #include "smath.h"
 #include "Complex.h"
+#include "get_regex.h"
 
 template<typename T>
 class Polynomial {
@@ -28,8 +29,17 @@ class Polynomial {
       return k;
     }
 
+    static std::string regex() {
+      return "(" + term_regex() + " ?)+";
+    }
+
+    static std::string term_regex() {
+      return "([+-]?) ?(" + std::string(get_regex<T>()) + ") ?\\* ?X\\^([0-9]+)";
+    }
+
+
     void parse(std::string_view sv) {
-      const std::regex e("([+-]?) ?([0-9]+(\\.[0-9]+)?) ?\\* ?X\\^([0-9]+)");
+      const std::regex e(term_regex());
       for (std::regex_iterator<std::string_view::const_iterator> ri(sv.begin(), sv.end(), e);
           ri != std::regex_iterator<std::string_view::const_iterator>();
           ++ri) {
