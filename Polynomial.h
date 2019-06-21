@@ -51,11 +51,11 @@ class Polynomial {
     }
 
     Polynomial<T> operator-(Polynomial<T> p) const {
-      const Polynomial& bigger = this->coefs.size() > p.coefs.size() ? *this : p;
-      const Polynomial& smaller = this->coefs.size() > p.coefs.size() ? p : *this;
-      Polynomial r(bigger);
-      for (unsigned int i(0); i < smaller.coefs.size(); ++i) {
-        r.coefs[i] -= smaller.coefs[i];
+      Polynomial r(*this);
+      if (coefs.size() < p.coefs.size())
+        r.coefs.resize(p.coefs.size());
+      for (unsigned int i(0); i < p.coefs.size(); ++i) {
+        r.coefs[i] -= p.coefs[i];
       }
       r.simplify();
       return r;
