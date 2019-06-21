@@ -26,7 +26,7 @@ void computorv1(string_view equation) {
     // Parsing
     const auto& p = parse(equation);
     // Reduction
-    cout << "Reduced form: " << p << "= 0" << endl;
+    cout << "Reduced form: " << p << " = 0" << endl;
     // Deduction of degree
     p.solve();
   } catch (std::runtime_error& e) {

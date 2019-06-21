@@ -81,7 +81,7 @@ class Polynomial {
         }
 
         // add a space for the next entry if it's not the last coef
-        if (i != coefs.size() + 1)
+        if (i != coefs.size() - 1)
           out << " ";
       }
     }
