@@ -28,38 +28,27 @@ all:
 $(OBJDIR)/computorv1.o: Polynomial.h
 
 $(NAME): $(OBJ)
-	@$(MAKE) printname
 	@printf "%-15s%s\n" Linking $@
 	@$(CC) -o $@ $^ $(LDFLAGS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INC)
-	@$(MAKE) printname
 	@printf "%-15s%s\n" Compiling $@ 
 	@mkdir -p $(OBJDIR)
 	@$(CC) -o $@ -c $< $(CFLAGS)
 
 git:
-	@$(MAKE) printname
 	@echo "Adding files to git repository"
 	git add $(SRC) $(INC) $(GIT)
 
 tags:
-	@$(MAKE) printname
 	@echo "Generating tags"
 	@ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .
 
-printname:
-	@printf "$(COLOR)"
-	@printf "[%-15s " "$(NAME)]"
-	@printf "$(COLOR_RESET)"
-
 clean:
-	@$(MAKE) printname
 	@echo "Suppressing obj files"
 	@rm -rf $(OBJDIR)
 
 fclean: clean
-	@$(MAKE) printname
 	@echo "Suppressing $(NAME)"
 	@rm -rf $(NAME)
 
