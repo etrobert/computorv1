@@ -19,3 +19,4 @@ test "0 * X^0 = 0 * X^0" tests/5.out
 test "0 * X^0 = 1 * X^1" tests/6.out
 test "1 * X^0 = -1 * X^1" tests/7.out
 test "0 * X^0 + 0 * X^1 - 1 * X^2 = 0 * X^0" tests/8.out
+test "hello" tests/9.out
