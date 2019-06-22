@@ -1,6 +1,7 @@
 #pragma once
 
 #include "smath.h"
+#include "print_solution.h"
 
 template<typename T>
 struct Complex {
@@ -12,7 +13,7 @@ struct Complex {
 template<typename T>
 static void print_abs_img(std::ostream& out, T k) {
   if (k != 1)
-    out << k;
+    out << print_solution(k);
   out << 'i';
 }
 
@@ -25,7 +26,7 @@ std::ostream& operator<<(std::ostream &out, const Complex<T> &c) {
       out << '-';
     print_abs_img(out, smath::abs(c.b));
   } else {
-    out << c.a;
+    out << print_solution(c.a);
     if (c.b == 0)
       return out;
     out << (c.b < 0 ? " - " : " + ");

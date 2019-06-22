@@ -11,6 +11,7 @@
 #include "smath.h"
 #include "Complex.h"
 #include "get_regex.h"
+#include "print_solution.h"
 
 template<typename T>
 class Polynomial {
@@ -134,7 +135,7 @@ class Polynomial {
           break;
         case 1:
           std::cout << "The solution is:" << std::endl <<
-            -coefs[0] / coefs[1] << std::endl;
+            print_solution(-coefs[0] / coefs[1]) << std::endl;
           break;
         case 2:
           solve_2();
@@ -153,11 +154,13 @@ class Polynomial {
           "Discriminant is strictly positive, the two solutions are:"
           << std::endl;
         const T sqrt_d = smath::sqrt(d);
-        std::cout << (-coefs[1] - sqrt_d) / (2 * coefs[2]) << std::endl;
-        std::cout << (-coefs[1] + sqrt_d) / (2 * coefs[2]) << std::endl;
+        std::cout << print_solution((-coefs[1] - sqrt_d) / (2 * coefs[2]))
+          << std::endl;
+        std::cout << print_solution((-coefs[1] + sqrt_d) / (2 * coefs[2]))
+          << std::endl;
       } else if (d == 0)
         std::cout << "Discriminant is null, the solution is " <<
-          -coefs[1] / (2 * coefs[2]) << std::endl;
+          print_solution(-coefs[1] / (2 * coefs[2])) << std::endl;
       else {
         std::cout <<
           "Discriminant is strictly negative, the two solutions are:"
