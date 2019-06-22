@@ -42,7 +42,8 @@ class Polynomial {
     void parse(std::string_view sv) {
       const std::regex e(term_regex());
       const std::regex_iterator<std::string_view::const_iterator> riend;
-      for (std::regex_iterator ri(sv.begin(), sv.end(), e); ri != riend; ++ri) {
+      for (std::regex_iterator<std::string_view::const_iterator>
+          ri(sv.begin(), sv.end(), e); ri != riend; ++ri) {
         const std::match_results<std::string_view::const_iterator> sm(*ri);
         const unsigned int power = std::atoi(sm[4].str().c_str());
         if (coefs.size() < power + 1)
