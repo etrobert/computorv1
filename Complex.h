@@ -1,5 +1,7 @@
 #pragma once
 
+#include "smath.h"
+
 template<typename T>
 struct Complex {
   T a;
@@ -21,13 +23,13 @@ std::ostream& operator<<(std::ostream &out, const Complex<T> &c) {
       return out << '0';
     else if (c.b < 0)
       out << '-';
-    print_abs_img(out, abs(c.b));
+    print_abs_img(out, smath::abs(c.b));
   } else {
     out << c.a;
     if (c.b == 0)
       return out;
     out << (c.b < 0 ? " - " : " + ");
-    print_abs_img(out, abs(c.b));
+    print_abs_img(out, smath::abs(c.b));
   }
   return out;
 }
