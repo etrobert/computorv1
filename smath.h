@@ -33,8 +33,5 @@ namespace smath {
     return (n > 0) ? n : -n;
   }
 
-  bool isnan(float n) {
-    return n != n;
-  }
-
+  bool isnan(float n);
 }
