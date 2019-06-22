@@ -25,7 +25,13 @@ OBJ					=	$(SRC:$(SRCDIR)/%.cpp=$(OBJDIR)/%.o)
 all:
 	@$(MAKE) $(NAME)
 
-$(OBJDIR)/computorv1.o: Polynomial.h
+$(OBJDIR)/main.o: computorv1.h
+
+$(OBJDIR)/computorv1.o: computorv1.h split_string.h Polynomial.h
+
+$(OBJDIR)/smath.o: smath.h
+
+$(OBJDIR)/split_string.o: split_string.h
 
 $(NAME): $(OBJ)
 	@printf "%-15s%s\n" Linking $@
@@ -39,10 +45,6 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp $(INC)
 git:
 	@echo "Adding files to git repository"
 	git add $(SRC) $(INC) $(GIT)
-
-tags:
-	@echo "Generating tags"
-	@ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .
 
 clean:
 	@echo "Suppressing obj files"
