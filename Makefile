@@ -11,7 +11,7 @@ SRCNAM			=	main.cpp computorv1.cpp split_string.cpp smath.cpp
 INCNAM			=
 
 CC					=	g++
-CFLAGS			=	-Wall -Wextra -Werror -I$(INCDIR) -std=c++17
+CFLAGS			=	-Wall -Wextra -Werror -I$(INCDIR) -std=c++1z
 LDFLAGS			=	
 
 GIT					=	README.md
