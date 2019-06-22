@@ -1,6 +1,5 @@
 #include "computorv1.h"
 
-#include "print_vector.h"
 #include "split_string.h"
 #include "Polynomial.h"
 
