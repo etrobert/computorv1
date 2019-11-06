@@ -4,12 +4,19 @@ COLORGREEN='\033[92m'
 COLOREND='\033[0m'
 COLORRED='\033[31m'
 
+BINARY='./computor'
+
 test () {
   echo "Testing $1 against $2"
-  diff <(./computor "$1") $2\
+  diff <($BINARY "$1") $2\
     && echo -e "$COLORGREEN TEST SUCCESS $COLOREND"\
     || echo -e "$COLORRED TEST ERROR $COLOREND"
 }
+
+if [[ ! -f $BINARY ]]; then
+  echo "Could not find binary $BINARY"
+  exit 1
+fi
 
 test "5 * X^0 + 4 * X^1 - 9.3 * X^2 = 1 * X^0" tests/1.out
 test "8 * X^0 - 6 * X^1 + 0 * X^2 - 5.6 * X^3 = 3 * X^0" tests/2.out
