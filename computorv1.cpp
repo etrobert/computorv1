@@ -12,7 +12,7 @@ using std::string_view;
 using nb_type = float;
 
 static Polynomial<nb_type> parse(string_view equation) {
-  std::regex reg(Polynomial<nb_type>::regex() + " ?= ?" + Polynomial<nb_type>::regex());
+  std::regex reg(Polynomial<nb_type>::regex() + " = " + Polynomial<nb_type>::regex());
   if (!regex_match(equation.begin(), equation.end(), reg))
     throw std::runtime_error("The equation format is not valid");
   const auto split = split_string(equation, '=');
