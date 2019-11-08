@@ -17,4 +17,8 @@ namespace smath {
   bool isnan(float n) {
     return n != n;
   }
+
+  bool isnan(double n) {
+    return n != n;
+  }
 }

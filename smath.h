@@ -34,4 +34,5 @@ namespace smath {
   }
 
   bool isnan(float n);
+  bool isnan(double n);
 }
